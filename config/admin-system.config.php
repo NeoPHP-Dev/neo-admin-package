@@ -8,7 +8,8 @@ return [
     'route_prefix' => '/admin',
 
     'auth' => [
-        'required_role' => 'ROLE_ADMIN'
+        'required_role' => 'ROLE_ADMIN',
+        'redirect_after_login' => 'admin.panel.index',
     ],
 
     'sidebar' => [
