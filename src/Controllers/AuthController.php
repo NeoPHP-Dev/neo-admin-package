@@ -9,6 +9,7 @@ use Neo\Core\Http\Request\Request;
 use Neo\Core\Http\Response\Types\Response;
 use Neo\Core\Routing\Attribute\MainRoute;
 use Neo\Core\Routing\Attribute\Route;
+use Neo\Core\Utils\Config\ConfigManager;
 use Vendor\NeoPHP\AdminPackage\Service\AdminAuthManager;
 
 #[MainRoute(path: '/admin/auth', name: 'admin.auth')]
@@ -21,7 +22,7 @@ final class AuthController extends AbstractController
     }
 
     #[Route(path: '/login', name: 'login.submit', methods: ['POST'])]
-    public function login(Request $request, AdminAuthManager $auth): Response
+    public function login(Request $request, AdminAuthManager $auth, ConfigManager $config): Response
     {
         $success = $auth->attempt(
             $request->getPost('email', ''),
@@ -34,7 +35,10 @@ final class AuthController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('admin.panel.index');
+        $redirectRoute = $config->from('admin-system')
+            ->get('auth.redirect_after_login', 'admin.panel.index');
+
+        return $this->redirectToRoute($redirectRoute);
     }
 
     #[Route(path: '/logout', name: 'logout', methods: ['GET'])]
