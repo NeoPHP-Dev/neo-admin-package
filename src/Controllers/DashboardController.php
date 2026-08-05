@@ -11,7 +11,7 @@ use Neo\Core\Routing\Attribute\Route;
 use Neo\Core\Security\Middleware\Attribute\Middleware;
 use Vendor\NeoPHP\AdminPackage\Middleware\AdminAuthMiddleware;
 
-#[MainRoute(path: '/admin', name: 'admin.dashboard')]
+#[MainRoute(path: '/admin/panel', name: 'admin.panel')]
 #[Middleware(
     use: AdminAuthMiddleware::class,
     message: 'You must be an administrator to access this page.',

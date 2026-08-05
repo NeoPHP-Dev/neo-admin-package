@@ -1,11 +1,13 @@
 {# @NeoAdmin/partials/sidebar.html.twig #}
+{% import '@NeoAdmin/partials/macros/Icon.macro.html.twig' as Icon %}
+
 <aside class="admin-sidebar">
     <div class="admin-sidebar-title">{{ adminConfig().title ?? 'Administration' }}</div>
 
     <nav class="admin-sidebar-nav">
         {% for item in adminSidebar() %}
             <a href="{{ item.url }}" class="admin-sidebar-link">
-                <span class="admin-sidebar-icon">{{ item.icon }}</span>
+                <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
                 <span>{{ item.title }}</span>
             </a>
         {% endfor %}

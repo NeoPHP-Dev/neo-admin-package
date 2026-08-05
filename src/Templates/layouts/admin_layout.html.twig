@@ -1,4 +1,5 @@
 {# @NeoAdmin/layouts/admin_layout.html.twig #}
+{% import '@NeoAdmin/partials/macros/Icon.macro.html.twig' as Icon %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,10 @@
 <main class="admin-main">
     <header class="admin-topbar">
         <span>{{ adminConfig().title ?? 'Administration' }}</span>
-        <a href="{{ path('admin.auth.logout') }}">Logout</a>
+        <a href="{{ path('admin.auth.logout') }}" class="admin-logout-link">
+            {{ Icon.render('log-out', 16) }}
+            <span>Logout</span>
+        </a>
     </header>
 
     <section class="admin-content">

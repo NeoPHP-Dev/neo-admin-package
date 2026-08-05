@@ -8,7 +8,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Vendor\\NeoPHP\\AdminPackage\\": "src/"
+            "Vendor\\NeoPHP\\AdminPackage\\": "src/",
+            "Vendor\\NeoPHP\\AdminPackage\\Database\\": "database/"
         }
     }
 }

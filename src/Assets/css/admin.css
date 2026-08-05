@@ -66,10 +66,22 @@ body.admin-body {
 }
 
 .admin-sidebar-icon {
-    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 1.25rem;
-    text-align: center;
     flex-shrink: 0;
+}
+
+.admin-sidebar-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.admin-topbar a.admin-logout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 /* Main area */
