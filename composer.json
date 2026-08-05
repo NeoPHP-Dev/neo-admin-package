@@ -1,0 +1,14 @@
+{
+    "name": "neophp/admin-package",
+    "description": "Admin panel skeleton for NeoPHP: login, sidebar, dashboard, fully overridable by the host project",
+    "type": "library",
+    "licence": "MIT",
+    "require": {
+        "php": ">=8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vendor\\NeoPHP\\AdminPackage\\": "src/"
+        }
+    }
+}

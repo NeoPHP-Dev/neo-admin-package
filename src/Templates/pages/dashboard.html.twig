@@ -1,0 +1,7 @@
+{# @NeoAdmin/pages/dashboard.html.twig #}
+{% extends '@NeoAdmin/layouts/admin_layout.html.twig' %}
+
+{% block content %}
+    <h1>Welcome to {{ adminConfig().title ?? 'Administration' }}</h1>
+    <p>This is the default dashboard. Override this page from your project by rendering your own template extending <code>@NeoAdmin/layouts/admin_layout.html.twig</code>.</p>
+{% endblock %}

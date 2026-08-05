@@ -1,0 +1,23 @@
+{# @NeoAdmin/layouts/admin_layout.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ adminConfig().title ?? 'Administration' }}</title>
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/admin.css">
+</head>
+<body class="admin-body">
+{% include '@NeoAdmin/partials/sidebar.html.twig' %}
+
+<main class="admin-main">
+    <header class="admin-topbar">
+        <span>{{ adminConfig().title ?? 'Administration' }}</span>
+        <a href="{{ path('admin.auth.logout') }}">Logout</a>
+    </header>
+
+    <section class="admin-content">
+        {% block content %}{% endblock %}
+    </section>
+</main>
+</body>
+</html>
