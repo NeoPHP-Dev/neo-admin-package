@@ -1,17 +1,9 @@
 {# @NeoAdmin/layouts/admin_layout.html.twig #}
-
-{% import '@NeoAdmin/components/macros/Icon.macro.html.twig' as Icon %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>
-            {% block title %}
-                {{ adminConfig().title ?? 'Administration' }}
-                {% if adminConfig().description %} — {{ adminConfig().description }}{% endif %}
-            {% endblock %}
-        </title>
+        <title>{% block title %}{{ adminConfig().title ?? 'Administration' }}{% if adminConfig().description %} — {{ adminConfig().description }}{% endif %}{% endblock %}</title>
 
         <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/base.css">
         <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/sidebar.css">
@@ -31,6 +23,9 @@
             </section>
         </main>
 
+        <script src="https://cdn.jsdelivr.net/npm/lucide@1.29.0/dist/umd/lucide.min.js"></script>
+        <script src="/packages-assets/NeoAdmin/js/admin.js"></script>
+        <script src="/packages-assets/NeoAdmin/js/sidebar.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
