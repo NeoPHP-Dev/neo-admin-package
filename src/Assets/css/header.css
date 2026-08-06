@@ -9,10 +9,28 @@
     padding: 0 2rem;
 }
 
-.admin-topbar span {
+.admin-topbar-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.admin-topbar-title {
     font-weight: 600;
     font-size: 0.95rem;
     color: #111827;
+}
+
+.admin-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.admin-breadcrumb-sep {
+    color: #d1d5db;
 }
 
 .admin-topbar a {
