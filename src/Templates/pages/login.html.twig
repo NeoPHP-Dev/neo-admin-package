@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login — {{ adminConfig().title ?? 'Administration' }}</title>
-    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/admin.css">
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/base.css">
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/content.css">
 </head>
 <body class="admin-login-body">
 <form method="post" action="{{ path('admin.auth.login.submit') }}" class="admin-login-form">

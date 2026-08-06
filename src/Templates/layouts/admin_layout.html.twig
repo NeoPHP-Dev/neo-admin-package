@@ -5,7 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ adminConfig().title ?? 'Administration' }}</title>
-    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/admin.css">
+
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/base.css">
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/sidebar.css">
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/header.css">
+    <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/content.css">
+
+    {% block stylesheets %}{% endblock %}
 </head>
 <body class="admin-body">
 {% include '@NeoAdmin/partials/sidebar.html.twig' %}
@@ -23,5 +29,8 @@
         {% block content %}{% endblock %}
     </section>
 </main>
+
+<script src="/packages-assets/NeoAdmin/js/admin.js"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>
