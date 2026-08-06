@@ -6,6 +6,7 @@ namespace Vendor\NeoPHP\AdminPackage\Service;
 
 use Neo\Core\Routing\Attribute\MainRoute;
 use Neo\Core\Routing\Attribute\Route;
+use Neo\Core\Routing\Exception\RouteNotFoundException;
 use Neo\Core\Routing\RouterManager;
 use Neo\Core\Utils\Config\ConfigManager;
 use Neo\Core\Utils\Scanner\ScannerAttributeManager;
@@ -26,7 +27,8 @@ final class SidebarResolver
      *     icon: string,
      *     type: 'link'|'group',
      *     url?: string,
-     *     children?: list<array{key: string, title: string, icon: string, url: string}>
+     *     routeName?: string,
+     *     children?: list<array{key: string, title: string, icon: string, url: string, routeName: string}>
      * }>
      */
     public function resolve(): array
@@ -49,6 +51,29 @@ final class SidebarResolver
         return $items;
     }
 
+    public function findTitleForRoute(?string $routeName): ?string
+    {
+        if ($routeName === null) {
+            return null;
+        }
+
+        foreach ($this->resolve() as $item) {
+            if ($item['type'] === 'link' && ($item['routeName'] ?? null) === $routeName) {
+                return $item['title'];
+            }
+
+            if ($item['type'] === 'group') {
+                foreach ($item['children'] as $child) {
+                    if (($child['routeName'] ?? null) === $routeName) {
+                        return $child['title'];
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
     /**
      * @param array<string, mixed> $entry
      */
@@ -59,7 +84,8 @@ final class SidebarResolver
 
     /**
      * @param array<string, mixed> $entry
-     * @return array{key: string, title: string, icon: string, type: 'link', url: string}
+     * @return array{key: string, title: string, icon: string, type: 'link', url: string, routeName: string}
+     * @throws RouteNotFoundException
      */
     private function resolveLink(string $key, array $entry): array
     {
@@ -71,12 +97,15 @@ final class SidebarResolver
             );
         }
 
+        $routeName = $this->resolveRouteName($controller, $key);
+
         return [
             'key' => $key,
             'title' => $entry['title'] ?? $key,
             'icon' => $entry['icon'] ?? 'circle',
             'type' => 'link',
-            'url' => $this->router->generateUrl($this->resolveRouteName($controller, $key)),
+            'url' => $this->router->generateUrl($routeName),
+            'routeName' => $routeName,
         ];
     }
 
@@ -105,6 +134,9 @@ final class SidebarResolver
         ];
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     private function resolveRouteName(string $controller, string $entryKey): string
     {
         $classResults = new ScannerAttributeManager($controller)
