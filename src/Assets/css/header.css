@@ -1,0 +1,36 @@
+.admin-topbar {
+    height: 60px;
+    flex-shrink: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.admin-topbar span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+.admin-topbar a {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.admin-topbar a:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.admin-topbar a.admin-logout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
