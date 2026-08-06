@@ -142,27 +142,43 @@ final class SidebarResolver
 
     /**
      * @param array<string, mixed> $entry
-     * @return array{key: string, title: string, icon: string, type: 'group', children: list<array<string, mixed>>}
+     * @return array{
+     *     key: string,
+     *     title: string,
+     *     icon: string,
+     *     type: 'group',
+     *     children: list<array<string, mixed>>
+     * }
      */
     private function resolveGroup(string $key, array $entry): array
     {
         $children = [];
 
         foreach ($entry as $childKey => $childEntry) {
-            if (!is_array($childEntry) || !array_key_exists('controller', $childEntry)) {
+            if (!is_array($childEntry)) {
                 continue;
             }
 
-            $children[] = $this->resolveLink($key . '.' . $childKey, $childEntry);
+            $fullKey = $key . '.' . $childKey;
+
+            $children[] = $this->isGroup($childEntry)
+                ? $this->resolveGroup($fullKey, $childEntry)
+                : $this->resolveLink($fullKey, $childEntry);
         }
 
         return [
             'key' => $key,
-            'title' => $key,
-            'icon' => 'folder',
+            'title' => $this->extractDisplayTitle($key),
+            'icon' => $entry['_icon'] ?? 'folder',
             'type' => 'group',
             'children' => $children,
         ];
+    }
+
+    private function extractDisplayTitle(string $fullKey): string
+    {
+        $parts = explode('.', $fullKey);
+        return end($parts);
     }
 
     /**
