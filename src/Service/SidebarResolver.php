@@ -75,6 +75,37 @@ final class SidebarResolver
     }
 
     /**
+     * @return list<string>
+     */
+    public function findBreadcrumbForRoute(?string $routeName): array
+    {
+        if ($routeName === null) {
+            return [];
+        }
+
+        foreach ($this->resolve() as $item) {
+            if ($item['type'] === 'link' && ($item['routeName'] ?? null) === $routeName) {
+                return [
+                    $item['title']
+                ];
+            }
+
+            if ($item['type'] === 'group') {
+                foreach ($item['children'] as $child) {
+                    if (($child['routeName'] ?? null) === $routeName) {
+                        return [
+                            $item['title'],
+                            $child['title']
+                        ];
+                    }
+                }
+            }
+        }
+
+        return [];
+    }
+
+    /**
      * @param array<string, mixed> $entry
      */
     private function isGroup(array $entry): bool
