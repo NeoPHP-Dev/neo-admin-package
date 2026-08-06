@@ -24,5 +24,17 @@ return [
         //     'icon' => 'users',
         //     'title' => 'Users',
         // ],
+        // 'Settings' => [
+        //      'general' => [
+        //          'controller' => \Neo\Src\MyProject\App\Controllers\NeoAdmin\Settings\GeneralController::class,
+        //          'icon' => 'cog',
+        //          'title' => 'General'
+        //      ],
+        //      'profile' => [
+        //          'controller' => \Neo\Src\MyProject\App\Controllers\NeoAdmin\Settings\ProfileController::class,
+        //          'icon' => 'user',
+        //          'title' => 'Profile'
+        //      ],
+        //  ]
     ]
 ];
