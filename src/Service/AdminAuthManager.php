@@ -64,8 +64,18 @@ class AdminAuthManager
 
         $id = $this->session->get(self::SESSION_KEY);
 
+        if ($id === null) {
+            $this->logout();
+            return null;
+        }
+
         /** @var AdminUser $user */
         $user = $this->entityManager->find(AdminUser::class, $id);
+
+        if ($user === null) {
+            $this->logout();
+        }
+
         return $user;
     }
 
