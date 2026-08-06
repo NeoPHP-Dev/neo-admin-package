@@ -1,0 +1,10 @@
+{# @NeoAdmin/partials/header.html.twig #}
+{% import '@NeoAdmin/partials/macros/Icon.macro.html.twig' as Icon %}
+
+<header class="admin-topbar">
+    <span>{{ currentPageTitle() }}</span>
+    <a href="{{ path('admin.auth.logout') }}" class="admin-logout-link">
+        {{ Icon.render('log-out', 16) }}
+        <span>Logout</span>
+    </a>
+</header>

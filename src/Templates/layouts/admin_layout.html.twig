@@ -21,22 +21,16 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body class="admin-body">
-    {% include '@NeoAdmin/partials/sidebar.html.twig' %}
+        {% include '@NeoAdmin/partials/sidebar.html.twig' %}
 
-    <main class="admin-main">
-        <header class="admin-topbar">
-            <span>{{ currentPageTitle() }}</span>
-            <a href="{{ path('admin.auth.logout') }}" class="admin-logout-link">
-                {{ Icon.render('log-out', 16) }}
-                <span>Logout</span>
-            </a>
-        </header>
+        <main class="admin-main">
+            {% include '@NeoAdmin/partials/header.html.twig' %}
 
-        <section class="admin-content">
-            {% block content %}{% endblock %}
-        </section>
-    </main>
+            <section class="admin-content">
+                {% block content %}{% endblock %}
+            </section>
+        </main>
 
-    {% block javascripts %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
