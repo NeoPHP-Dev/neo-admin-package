@@ -84,6 +84,42 @@ body.admin-body {
     gap: 0.4rem;
 }
 
+.admin-sidebar-group-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+}
+
+.admin-sidebar-chevron {
+    margin-left: auto;
+    transition: transform 0.15s;
+    display: inline-flex;
+    width: 14px;
+    flex-shrink: 0;
+}
+
+.admin-sidebar-group.open .admin-sidebar-chevron {
+    transform: rotate(180deg);
+}
+
+.admin-sidebar-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+}
+
+.admin-sidebar-group.open .admin-sidebar-submenu {
+    max-height: 500px;
+}
+
+.admin-sidebar-sublink {
+    padding-left: 2.75rem;
+    font-size: 0.85rem;
+}
+
 /* Main area */
 .admin-main {
     flex: 1;
