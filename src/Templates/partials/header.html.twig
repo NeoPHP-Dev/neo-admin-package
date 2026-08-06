@@ -2,7 +2,21 @@
 {% import '@NeoAdmin/partials/macros/Icon.macro.html.twig' as Icon %}
 
 <header class="admin-topbar">
-    <span>{{ currentPageTitle() }}</span>
+    <div class="admin-topbar-titles">
+        <span class="admin-topbar-title">{{ currentPageTitle() }}</span>
+        {% set breadcrumb = currentBreadcrumb() %}
+        {% if breadcrumb|length > 1 %}
+            <nav class="admin-breadcrumb">
+                {% for crumb in breadcrumb %}
+                    <span class="admin-breadcrumb-item">{{ crumb }}</span>
+                    {% if not loop.last %}
+                        <span class="admin-breadcrumb-sep">/</span>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+        {% endif %}
+    </div>
+
     <a href="{{ path('admin.auth.logout') }}" class="admin-logout-link">
         {{ Icon.render('log-out', 16) }}
         <span>Logout</span>
