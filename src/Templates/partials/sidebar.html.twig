@@ -6,10 +6,28 @@
 
     <nav class="admin-sidebar-nav">
         {% for item in adminSidebar() %}
-            <a href="{{ item.url }}" class="admin-sidebar-link">
-                <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
-                <span>{{ item.title }}</span>
-            </a>
+            {% if item.type == 'group' %}
+                <div class="admin-sidebar-group">
+                    <button type="button" class="admin-sidebar-link admin-sidebar-group-toggle" onclick="this.parentElement.classList.toggle('open')">
+                        <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
+                        <span>{{ item.title }}</span>
+                        <span class="admin-sidebar-chevron">{{ Icon.render('chevron-down', 14) }}</span>
+                    </button>
+                    <div class="admin-sidebar-submenu">
+                        {% for child in item.children %}
+                            <a href="{{ child.url }}" class="admin-sidebar-link admin-sidebar-sublink">
+                                <span class="admin-sidebar-icon">{{ Icon.render(child.icon) }}</span>
+                                <span>{{ child.title }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ item.url }}" class="admin-sidebar-link">
+                    <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
+                    <span>{{ item.title }}</span>
+                </a>
+            {% endif %}
         {% endfor %}
     </nav>
 </aside>
