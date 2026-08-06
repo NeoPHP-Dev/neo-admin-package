@@ -8,16 +8,18 @@
         <link rel="stylesheet" href="/packages-assets/NeoAdmin/css/content.css">
     </head>
     <body class="admin-login-body">
-        <form method="post" action="{{ path('admin.auth.login.submit') }}" class="admin-login-form">
+        <div class="admin-login-form">
             <h1>{{ adminConfig().title ?? 'Administration' }}</h1>
 
             {% if error is defined %}
                 <p class="admin-login-error">{{ error }}</p>
             {% endif %}
 
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
+            {{ form_start(form, path('admin.auth.login.submit'), 'POST', {'class': 'admin-login-fields'}) }}
+                {{ form_row(form, 'email') }}
+                {{ form_row(form, 'password') }}
+                <button type="submit">Log in</button>
+            {{ form_end() }}
+        </div>
     </body>
 </html>
