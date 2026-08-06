@@ -7,6 +7,7 @@ namespace Vendor\NeoPHP\AdminPackage\Extension;
 use Neo\Core\DI\Container;
 use Neo\Core\Extension\Attribute\Extension;
 use Neo\Core\Extension\Enum\ExtensionTypeEnum;
+use Neo\Core\Routing\RouterManager;
 use Neo\Core\Utils\Config\ConfigManager;
 use Neo\Core\View\Interface\TwigExtensionInterface;
 use Vendor\NeoPHP\AdminPackage\Service\SidebarResolver;
@@ -27,6 +28,12 @@ final class AdminViewExtension implements TwigExtensionInterface
                 $resolver = $this->container->get(SidebarResolver::class);
                 return $resolver->resolve();
             },
+            'currentPageTitle' => function () {
+                $router = $this->container->get(RouterManager::class);
+                $resolver = $this->container->get(SidebarResolver::class);
+
+                return $resolver->findTitleForRoute($router->getCurrentRouteName()) ?? 'NeoAdmin';
+            }
         ];
     }
 
