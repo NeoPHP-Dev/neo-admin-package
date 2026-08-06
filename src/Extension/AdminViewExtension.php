@@ -33,6 +33,12 @@ final class AdminViewExtension implements TwigExtensionInterface
                 $resolver = $this->container->get(SidebarResolver::class);
 
                 return $resolver->findTitleForRoute($router->getCurrentRouteName()) ?? 'NeoAdmin';
+            },
+            'currentBreadcrumb' => function () {
+                $router = $this->container->get(RouterManager::class);
+                $resolver = $this->container->get(SidebarResolver::class);
+
+                return $resolver->findBreadcrumbForRoute($router->getCurrentRouteName());
             }
         ];
     }
