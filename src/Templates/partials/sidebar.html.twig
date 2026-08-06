@@ -6,28 +6,31 @@
 
     <nav class="admin-sidebar-nav">
         {% for item in adminSidebar() %}
-            {% if item.type == 'group' %}
-                <div class="admin-sidebar-group">
-                    <button type="button" class="admin-sidebar-link admin-sidebar-group-toggle" onclick="this.parentElement.classList.toggle('open')">
-                        <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
-                        <span>{{ item.title }}</span>
-                        <span class="admin-sidebar-chevron">{{ Icon.render('chevron-down', 14) }}</span>
-                    </button>
-                    <div class="admin-sidebar-submenu">
-                        {% for child in item.children %}
-                            <a href="{{ child.url }}" class="admin-sidebar-link admin-sidebar-sublink">
-                                <span class="admin-sidebar-icon">{{ Icon.render(child.icon) }}</span>
-                                <span>{{ child.title }}</span>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% else %}
-                <a href="{{ item.url }}" class="admin-sidebar-link">
-                    <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
-                    <span>{{ item.title }}</span>
-                </a>
-            {% endif %}
+            {{ _self.render_item(item, 0) }}
         {% endfor %}
     </nav>
 </aside>
+
+{% macro render_item(item, depth) %}
+    {% import '@NeoAdmin/components/macros/Icon.macro.html.twig' as Icon %}
+
+    {% if item.type == 'group' %}
+        <div class="admin-sidebar-group">
+            <button type="button" class="admin-sidebar-link admin-sidebar-group-toggle" style="padding-left: {{ 1.5 + depth * 1.25 }}rem">
+                <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
+                <span>{{ item.title }}</span>
+                <span class="admin-sidebar-chevron">{{ Icon.render('chevron-down', 14) }}</span>
+            </button>
+            <div class="admin-sidebar-submenu">
+                {% for child in item.children %}
+                    {{ _self.render_item(child, depth + 1) }}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <a href="{{ item.url }}" class="admin-sidebar-link admin-sidebar-sublink" style="padding-left: {{ 1.5 + depth * 1.25 }}rem">
+            <span class="admin-sidebar-icon">{{ Icon.render(item.icon) }}</span>
+            <span>{{ item.title }}</span>
+        </a>
+    {% endif %}
+{% endmacro %}
