@@ -10,6 +10,7 @@ return [
     'auth' => [
         'required_role' => 'ROLE_ADMIN',
         'redirect_after_login' => 'admin.panel.index',
+        'session_key' => '_neo_admin_auth_user_id',
     ],
 
     'sidebar' => [
