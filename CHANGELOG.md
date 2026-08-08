@@ -1,3 +1,7 @@
+## v3.3.4 — 2026-08-08
+
+- fix: remove @ char
+
 ## v3.3.3 — 2026-08-08
 
 - fix: set badge to null
