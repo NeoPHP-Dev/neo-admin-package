@@ -35,39 +35,41 @@ final class AdminAuthCollector implements CollectorInterface, CollectorAwareInte
         ];
     }
 
-    public function renderTab(array $data): string
+    public function showInToolbar(): bool
+    {
+        return true;
+    }
+
+    public function showInProfiler(): bool
+    {
+        return true;
+    }
+
+    public function renderToolbar(array $data): string
     {
         $connected = $data['connected'] ?? false;
-        $color = $connected ? '#4ade80' : '#71717a';
+        $color = $connected ? '#4ade80' : '#6b7280';
         $label = $connected ? ($data['email'] ?? 'Admin') : 'Guest';
 
         return sprintf(
-            '<div class="n-tab" onclick="neoSwitch(\'admin\')"><span class="n-label">Admin</span><span class="n-value" style="color:%s">%s</span></div>',
+            '<span class="n-label">Admin</span><span class="n-value" style="color:%s">%s</span>',
             $color,
             htmlspecialchars($label, ENT_QUOTES, 'UTF-8')
         );
     }
 
-    public function renderPanel(array $data): string
+    public function renderProfiler(array $data): string
     {
         $connected = $data['connected'] ?? false;
-        $chipClass = $connected ? 'on' : 'off';
-        $chipLabel = $connected ? 'Connected' : 'Not connected';
 
-        $html = sprintf(
-            '<div class="n-auth-chip %s"><span class="n-auth-chip-dot"></span>%s</div>',
-            $chipClass,
-            htmlspecialchars($chipLabel, ENT_QUOTES, 'UTF-8')
-        );
-
-        if ($connected) {
-            $html .= sprintf(
-                '<dl class="n-kv"><dt>Email</dt><dd>%s</dd><dt>Role</dt><dd>%s</dd></dl>',
-                htmlspecialchars($data['email'] ?? '', ENT_QUOTES, 'UTF-8'),
-                htmlspecialchars($data['role'] ?? '', ENT_QUOTES, 'UTF-8')
-            );
+        if (!$connected) {
+            return '<p class="n-empty">Not connected.</p>';
         }
 
-        return $html;
+        return sprintf(
+            '<p style="color:#4ade80;font-weight:600;margin-bottom:1.5rem">Connected</p><dl><dt>Email</dt><dd>%s</dd><dt>Role</dt><dd>%s</dd></dl>',
+            htmlspecialchars($data['email'] ?? '', ENT_QUOTES, 'UTF-8'),
+            htmlspecialchars($data['role'] ?? '', ENT_QUOTES, 'UTF-8')
+        );
     }
 }
