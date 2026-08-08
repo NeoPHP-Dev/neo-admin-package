@@ -1,3 +1,7 @@
+## v3.3.2 — 2026-08-08
+
+- fix: remove badge from toolbar
+
 ## v3.3.1 — 2026-08-08
 
 - fix: remove setAccessible deprecated
