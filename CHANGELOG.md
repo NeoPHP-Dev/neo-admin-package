@@ -1,3 +1,7 @@
+## v3.3.1 — 2026-08-08
+
+- fix: remove setAccessible deprecated
+
 ## v3.3.0 — 2026-08-08
 
 - feat: add newest collector system
