@@ -59,6 +59,7 @@ final class AdminAuthCollector implements CollectorInterface
         return [
             'label' => 'Admin',
             'value' => $data['authenticated'] ? ('@' . ($data['email'] ?? '?')) : 'Guest',
+            'badge' => null,
         ];
     }
 
