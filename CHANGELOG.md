@@ -1,3 +1,7 @@
+## v3.3.0 — 2026-08-08
+
+- feat: add newest collector system
+
 ## v3.2.3 — 2026-08-08
 
 - Merge branch 'main' of https://github.com/NeoPHP-Dev/neo-admin-package
