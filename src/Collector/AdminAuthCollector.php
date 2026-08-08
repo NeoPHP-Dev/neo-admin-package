@@ -128,7 +128,6 @@ final class AdminAuthCollector implements CollectorInterface
                 continue;
             }
 
-            $prop->setAccessible(true);
             $name = $prop->getName();
 
             if ($this->isMasked($name)) {
