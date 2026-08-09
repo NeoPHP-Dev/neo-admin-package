@@ -96,7 +96,10 @@ final class AdminAuthCollector implements CollectorInterface
 
         return [
             'title' => 'Admin Auth',
-            'badge' => $data['authenticated'] ? $data['email'] : null,
+            'badge' => null,
+            'metrics' => [
+                ['label' => 'Authenticated', 'value' => $data['authenticated'] ? 'Yes' : 'No'],
+            ],
             'blocks' => $blocks,
         ];
     }
