@@ -1,3 +1,7 @@
+## v3.4.0 — 2026-08-09
+
+- feat: add AdminAuthCollector to expose admin session state in the NeoPHP profiler
+
 ## v3.3.4 — 2026-08-08
 
 - fix: remove @ char
