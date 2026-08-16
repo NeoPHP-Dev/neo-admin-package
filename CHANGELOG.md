@@ -1,3 +1,7 @@
+## v3.4.1 — 2026-08-16
+
+- refactor: normalize namespace/directory naming to singular
+
 ## v3.4.0 — 2026-08-09
 
 - feat: add AdminAuthCollector to expose admin session state in the NeoPHP profiler
