@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vendor\NeoPHP\AdminPackage\Commands;
+namespace Vendor\NeoPHP\AdminPackage\Command;
 
 use Neo\Core\Application\ApplicationPaths;
 use Neo\Core\Console\Abstract\AbstractCommand;
@@ -26,7 +26,10 @@ use Vendor\NeoPHP\AdminPackage\Database\Repository\AdminUserRepository;
 )]
 final class CreateAdministratorCommand extends AbstractCommand
 {
-    public function __construct(private readonly Container $container) {}
+    public function __construct(
+        private Container $container
+    ) {
+    }
 
     public function configure(): void
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vendor\NeoPHP\AdminPackage\Controllers;
+namespace Vendor\NeoPHP\AdminPackage\Controller;
 
 use Neo\Core\Controller\AbstractController;
 use Neo\Core\Database\Form\Form;

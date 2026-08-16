@@ -10,9 +10,10 @@ use Vendor\NeoPHP\AdminPackage\Service\AdminAuthManager;
 final class AdminAuthMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private readonly AdminAuthManager $auth,
-        private readonly string $requiredRole,
-    ) {}
+        private AdminAuthManager $auth,
+        private string $requiredRole,
+    ) {
+    }
 
     public function handle(): bool
     {
